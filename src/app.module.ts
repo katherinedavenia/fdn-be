@@ -9,9 +9,11 @@ import defineConfig from './mikro-orm.config';
 import { MikroORM } from '@mikro-orm/core';
 import { UserModule } from './user/user.module';
 import { HttpModule } from '@nestjs/axios';
+import { HttpExceptionFilter } from './http-exception.filter';
 
 @Module({
   imports: [MikroOrmModule.forRoot(defineConfig), UserModule, HttpModule],
+  providers: [HttpExceptionFilter],
 })
 export class AppModule implements NestModule, OnModuleInit {
   constructor(private readonly orm: MikroORM) {}

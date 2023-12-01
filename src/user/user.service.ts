@@ -45,10 +45,10 @@ export class UserService {
   public async createUser(createUserDTO: CreateUserDTO): Promise<User> {
     const { email, firstName, lastName, avatar } = createUserDTO;
 
-    const emailExists = await this.userRepo.count({ email, deletedAt: null });
-    if (emailExists) {
-      throw new UnprocessableEntityException('this email already exists');
-    }
+    // const emailExists = await this.userRepo.count({ email, deletedAt: null });
+    // if (emailExists) {
+    //   throw new UnprocessableEntityException('this email already exists');
+    // }
 
     const user = new User(email, firstName, lastName, avatar);
 
@@ -133,5 +133,16 @@ export class UserService {
     user.deletedAt = new Date();
 
     await this.userRepo.flush();
+  }
+
+  public async findByEmail(email: string): Promise<User | null> {
+    console.log('service layer:', email);
+    const user = this.userRepo.findOne({ email, deletedAt: null });
+    console.log(user);
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+
+    return user;
   }
 }
