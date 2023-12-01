@@ -17,8 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
-    "mikro-orm": "NODE_ENV=development MIKRO_ORM_CLI_USE_TS_NODE=true mikro-orm"
+    "test:e2e": "jest --config=jest-e2e.ts",
+    "mikro-orm": "mikro-orm"
   },
   "dependencies": {
     "@mikro-orm/core": "^5.9.4",
@@ -28,12 +28,15 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "dotenv-flow": "^4.0.1",
     "env-var": "^7.4.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^5.9.4",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",

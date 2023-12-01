@@ -12,7 +12,7 @@ export default defineConfig({
   type: 'postgresql',
   migrations: {
     snapshot: false,
-    path: 'dist/src/migrations',
+    path: 'dist/migrations',
     pathTs: 'src/migrations',
     disableForeignKeys: false,
   },

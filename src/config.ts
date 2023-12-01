@@ -7,10 +7,10 @@ export const getRequired = (env: string) => get(env).required();
 
 export const config = {
   get appEnv() {
-    return getRequired('APP_ENV').asEnum(['development']);
+    return getRequired('APP_ENV').asString();
   },
   get nodeEnv() {
-    return getRequired('NODE_ENV').asEnum(['development']);
+    return getRequired('NODE_ENV').asString();
   },
   get postgresHost() {
     return getRequired('POSTGRES_HOST').asString();
