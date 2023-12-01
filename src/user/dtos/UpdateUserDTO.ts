@@ -1,28 +1,28 @@
-import { IsEmail, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsEmail, IsOptional, IsString, IsUrl } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 const capitalizeFirstLetter = (value: string): string => {
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
 
-export class CreateUserDTO {
+export class UpdateUserDTO {
   @IsString()
   @IsEmail()
   @Transform(({ value }) => value.toLowerCase())
-  readonly email: string;
+  readonly email?: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @Transform(({ value }) => capitalizeFirstLetter(value))
-  readonly firstName: string;
+  readonly firstName?: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @Transform(({ value }) => capitalizeFirstLetter(value))
-  readonly lastName: string;
+  readonly lastName?: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @IsUrl()
-  readonly avatar: string;
+  readonly avatar?: string;
 }

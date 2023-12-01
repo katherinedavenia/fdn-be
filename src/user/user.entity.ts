@@ -12,7 +12,6 @@ import { UserRepository } from './user.repository';
 
 @Entity({ customRepository: () => UserRepository, tableName: 'users' })
 @Index({ properties: ['email'] })
-@Index({ properties: ['phoneNumber'] })
 export class User {
   [EntityRepositoryType]?: UserRepository;
 
@@ -20,15 +19,20 @@ export class User {
     autoincrement: true,
     type: BigIntType,
   })
-  id: string;
+  id: number;
 
   @Property()
   @Unique()
   email: string;
 
   @Property()
-  @Unique()
-  phoneNumber: string;
+  firstName: string;
+
+  @Property()
+  lastName: string;
+
+  @Property()
+  avatar: string;
 
   @Property({
     type: 'timestamp with time zone',
@@ -43,9 +47,23 @@ export class User {
   })
   updatedAt: Date = new Date();
 
-  constructor(email: string, phoneNumber: string) {
+  @Property({
+    type: 'timestamp with time zone',
+    hidden: true,
+    nullable: true,
+  })
+  deletedAt: Date | null = null;
+
+  constructor(
+    email: string,
+    firstName: string,
+    lastName: string,
+    avatar: string,
+  ) {
     this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.avatar = avatar;
   }
 
   toJSON() {

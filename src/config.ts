@@ -25,7 +25,9 @@ export const config = {
     return getRequired('POSTGRES_PASSWORD').asString();
   },
   get postgresDb() {
-    const postgresDB = getRequired('POSTGRES_DB').asString();
-    return postgresDB;
+    return getRequired('POSTGRES_DB').asString();
+  },
+  get authKey() {
+    return getRequired('AUTHORIZATION_KEY').asString();
   },
 };
